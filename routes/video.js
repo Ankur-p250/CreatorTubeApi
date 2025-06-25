@@ -19,7 +19,7 @@ Router.get('/my-videos',checkAuth,async(req,res)=>{
     {
         const user = await jwt.verify(req.headers.authorization.split(" ")[1],'sbs online classes 123')
         //console.log(user)
-        const videos = await Video.find({user_id:user._id}).populate('user_id','channelName logoUrl')
+        const videos = await Video.find({user_id:user._id}).populate('user_id','channelName logoUrl subscribers')
         console.log(videos)
         res.status(200).json({
             videos: videos
